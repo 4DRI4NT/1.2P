@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>           
+            let name;
+            name = window.prompt ("Hi! What's your name?");
+            document.writeln ("<h1> Nice to meet you " + name +"!! <br> Welcome to this website </h1>");
+            document.writeln ("<p> Your name is " + name.length +" characters long!!</p>");
+        </script>
+    </head>
+    <body>
+        <p id="spellDisplay1"></p>
+        <p id="spellDisplay2"></p>
+        <button type="button" onclick="spellOut()">Click to spell out your name!</button>
+        <p id="spellCounter">[I'll spell it out here]</p>
+        <script>
+            //split name into seperate letters
+            name = name.toUpperCase();
+            let slices = "";
+            for (i = 0; i < name.length; i++) 
+                {
+                    slices += name.slice(i,(i+1));
+                    slices += "|";
+                }
+
+            document.getElementById("spellDisplay1").innerHTML = "I can spell out your name like this~   " + slices;
+            slices = slices.replaceAll("|", "*");
+            document.getElementById("spellDisplay2").innerHTML = "Or I can spell like this~   " + slices;
+
+            let j = 0;
+            const nameLetters = slices.split('*');
+            function spellOut() {
+                //show and cycle letter
+                document.getElementById("spellCounter").innerHTML = nameLetters[j];
+                j += 1;
+                //check for end
+                if (j==nameLetters.length) {
+                    j = 0;
+                    document.getElementById("spellCounter").innerHTML = "Done! Wanna try again?";
+                }
+            }
+        </script>
+
+        <br>
+
+        <p id="numberDisplay1"></p>
+        <p id="numberDisplay2"></p>
+        <p id="numberDisplay3"></p>
+        <p id="numberDisplay4"></p>
+        <p id="numberDisplay5"></p>
+        <p id="numberDateDisplay"></p>
+        <button type="button" onclick="addToCount()">Watch me count!</button>
+        <p id="counter">0</p>
+        <script>
+            let num = Math.random();
+            document.getElementById("numberDisplay1").innerHTML = "<br>Let's experiment with this random number: " + num;
+            document.getElementById("numberDisplay2").innerHTML = "Here it is rounded to the nearest 4: " + num.toFixed(4);
+            document.getElementById("numberDisplay3").innerHTML = "...in exponential notation: " + num.toExponential();
+            document.getElementById("numberDisplay4").innerHTML = "...up to 20 digits: " + num.toPrecision(20);
+            document.getElementById("numberDisplay4").innerHTML = "...and as a whole number: " + parseInt(num);
+
+            document.getElementById("numberDateDisplay").innerHTML = "Showing todays date as a number: " + Number(new Date());
+
+            var count = 0;
+            function addToCount() {
+                count+= 1;
+                document.getElementById("counter").innerHTML = count;
+            }
+        </script>
+
+        <br>
+
+        <h2>I can count like this too!!</h2>
+        <p id="countDisplay1"></p>
+        <p id="countDisplay2"></p>
+        <p id="countDisplay3"></p>
+        <script>
+            let countArray, i;
+            countArray = ["one", "two", "three", "four", "five"];
+
+            let output = "<ul>";
+
+            for (i = 0; i < countArray.length; i++) 
+            {
+                output += "<li>" + countArray[i] + "</li>";
+            }
+            output += "</ul>";
+
+            document.getElementById("countDisplay1").innerHTML = output;
+
+            countArray.push("six");
+            document.getElementById("countDisplay2").innerHTML = "Let's add 6 for good measure~ <br>" + countArray.join("... ");
+
+            countArray.unshift("zero");
+            document.getElementById("countDisplay3").innerHTML = "Wait! ...more importantly in programming it should be~ <br>" + countArray.join("... ");
+        </script>
+
+        <br>
+        <br>
+
+        <p id="dateDisplay1"></p>
+        <p id="dateDisplay2"></p>
+        <p id="dateDisplay3"></p>
+        <p id="dateDisplay4"></p>
+        <p id="dateDisplay5"></p>
+        <p id="dateDisplay6"></p>
+        
+        <script>
+            const currentDate = new Date();
+            document.getElementById("dateDisplay1").innerHTML = "The system date is: " + currentDate;
+            document.getElementById("dateDisplay2").innerHTML = "Here in a more readable format: " + currentDate.toDateString();
+            document.getElementById("dateDisplay3").innerHTML = "Now in UTC standard: " + currentDate.toUTCString();
+            document.getElementById("dateDisplay4").innerHTML = "Again in ISO standard: " + currentDate.toISOString();
+            document.getElementById("dateDisplay5").innerHTML = "And in milliseconds: " + Date.parse(currentDate);
+            document.getElementById("dateDisplay6").innerHTML = "0-6, Day of the week: " + currentDate.getDay(currentDate);
+
+        </script>
+    </body>
+</html>
